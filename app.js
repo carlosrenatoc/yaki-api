@@ -5,11 +5,14 @@ const cors = require('cors');
 dotenv.config();
 const app = express();
 
+const verifyToken = require('./verifyToken');
+
 //Import routes
 const authRoute = require('./User/routes/auth_routes');
 const studentRoute = require('./Student/routes/student_routes');
 const turmaRoute = require('./Turma/routes/turma_routes');
 const lessonRoute = require('./Lesson/routes/lesson_routes');
+const { verify } = require('jsonwebtoken');
 
 //Connect to db
 mongoose.connect(
@@ -26,9 +29,9 @@ app.use(express.json());
 
 //Route middleware
 app.use('/api/user', authRoute);
-app.use('/api/student', studentRoute);
+app.use('/api/student', verifyToken, studentRoute);
 app.use('/api/turma', turmaRoute);
-app.use('/api/lesson', lessonRoute);
+app.use('/api/lesson', verifyToken, lessonRoute);
 
 
 
