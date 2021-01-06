@@ -38,10 +38,10 @@ exports.update = async (req, res) => {
     const turmaID = req.params.turmaId;
     console.log(req.body)
     if (req.body.name !== undefined){
-        const data_update = {
-            name: req.body.name,
-            monthly_payment: req.body.monthly_payment
-        };
+        var data_update = {};
+        if (req.body.name) data_update.name = req.body.name;
+        if (req.body.monthly_payment) data_update.monthly_payment = req.body.monthly_payment;
+        
         const turma_updated = await Turma.findOneAndUpdate({_id: turmaID}, data_update, {new:true});
         console.log(turma_updated);
         res.send(turma_updated);

@@ -44,15 +44,16 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     const userID = req.params.userId;
-    const data_update = {
-        name: req.body.name,
-        email: req.body.email,
-        birthday: req.body.birthday,
-        phone: req.body.phone,
-        guardian: req.body.guardian,
-        current_belt: req.body.belt,
-        turma: req.body.turma_id
+    var data_update = {};
+    if (req.body.name) data_update.name = req.body.name;
+    if (req.body.email) data_update.email = req.body.email;
+    if (req.body.birthday) data_update.birthday = req.body.birthday;
+    if (req.body.phone) data_update.phone = req.body.phone;
+    if (req.body.guardian) data_update.guardian = req.body.guardian;
+    if (req.body.belt) data_update.belt = req.body.belt;
+    if (req.body.turma_id) data_update.turma_id = req.body.turma_id;
     };
+    
     const student_updated = await Student.findOneAndUpdate({_id: userID}, data_update, {new:true});
     console.log(student_updated);
     res.send(student_updated);
