@@ -10,6 +10,7 @@ const verifyToken = require('./verifyToken');
 //Import routes
 const authRoute = require('./User/routes/auth_routes');
 const studentRoute = require('./Student/routes/student_routes');
+const customfieldRoute = require('./CustomField/routes/customfield_routes');
 const turmaRoute = require('./Turma/routes/turma_routes');
 const lessonRoute = require('./Lesson/routes/lesson_routes');
 const { verify } = require('jsonwebtoken');
@@ -30,7 +31,8 @@ app.use(express.json());
 //Route middleware
 app.use('/api/user', authRoute);
 app.use('/api/student', verifyToken, studentRoute);
-app.use('/api/turma', turmaRoute);
+app.use('/api/customfield', verifyToken, customfieldRoute);
+app.use('/api/turma', verifyToken, turmaRoute);
 app.use('/api/lesson', verifyToken, lessonRoute);
 
 

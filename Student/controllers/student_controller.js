@@ -31,7 +31,8 @@ exports.create = async (req, res) => {
         phone: req.body.phone,
         guardian: req.body.guardian,
         current_belt: req.body.belt,
-        turma: req.body.turma_id
+        turma: req.body.turma_id,
+        customfields: req.body.customfields
 
     });
     try{
@@ -52,7 +53,7 @@ exports.update = async (req, res) => {
     if (req.body.guardian) data_update.guardian = req.body.guardian;
     if (req.body.belt) data_update.belt = req.body.belt;
     if (req.body.turma_id) data_update.turma_id = req.body.turma_id;
-    };
+    if (req.body.customfields) data_update.customfields = req.body.customfields;
     
     const student_updated = await Student.findOneAndUpdate({_id: userID}, data_update, {new:true});
     console.log(student_updated);
