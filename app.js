@@ -8,11 +8,11 @@ const app = express();
 const verifyToken = require('./verifyToken');
 
 //Import routes
-const authRoute = require('./User/routes/auth_routes');
-const studentRoute = require('./Student/routes/student_routes');
-const customfieldRoute = require('./CustomField/routes/customfield_routes');
-const turmaRoute = require('./Turma/routes/turma_routes');
-const lessonRoute = require('./Lesson/routes/lesson_routes');
+const authRoute = require('./Modules/User/routes/auth_routes');
+const studentRoute = require('./Modules/Student/routes/student_routes');
+const customfieldRoute = require('./Modules/CustomField/routes/customfield_routes');
+const turmaRoute = require('./Modules/Turma/routes/turma_routes');
+const lessonRoute = require('./Modules/Lesson/routes/lesson_routes');
 const { verify } = require('jsonwebtoken');
 
 //Connect to db
